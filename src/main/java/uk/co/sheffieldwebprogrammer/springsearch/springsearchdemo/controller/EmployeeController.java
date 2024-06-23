@@ -54,5 +54,13 @@ public class EmployeeController {
         return employeeRepository.findBySalary(10000l, pageable).getContent();
     }
 
+    @RequestMapping("/pageemployee")
+    @GetMapping
+    public List<Employee> pageemp() {
+        Sort sortBy = Sort.by(Sort.Order.asc("cv"));
+        Pageable pageable = PageRequest.of(0,10, sortBy);
+        return employeeRepository.findByCvContaining("JAVA", pageable).getContent();
+    }
+
 
 }

@@ -11,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends ElasticsearchRepository<Employee, String> {
+
+    Page<Employee> findByCvContaining(String name, Pageable pageable);
+
     List<Employee> findByCvContaining(String name);
 
     @Query("{\"match\": {\"salary\": {\"query\": \"?0\"}}}")
